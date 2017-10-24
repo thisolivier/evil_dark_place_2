@@ -1,0 +1,13 @@
+<p class="logout" (click)="logout()">Logout</p>
+<h2>{{ ender }} ended the auction</h2>
+<p>Below are the highest bidders per product!</p>
+<ul>
+  <li *ngFor="let product of products; let idx = index" class="result_product">
+    <div class="product_title">
+      <h3>Product {{ idx + 1 }}</h3>
+    </div>
+      <h4>{{ product.winner.name }}</h4>
+      £{{ product.winner.ammount }}
+  </li>
+</ul>
+<button class="outline" (click)="beginAgain()">Go Again</button>

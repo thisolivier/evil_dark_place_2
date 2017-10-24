@@ -1,0 +1,32 @@
+<p class="logout" (click)="logout()">Logout</p>
+<h2>Bid Now!</h2>
+<section class="products">
+  <div class="product product1" *ngFor="let product of products; let idx = index">
+    <div class="title outline">
+      Product {{ idx + 1 }}
+    </div>
+    <form>
+      <input type="text" name="ammount" [(ngModel)]="bidFields[idx]">
+      <input class="outline" type="submit" value="BID" (click)="processBid(idx)">
+    </form>
+    <p *ngIf="badBidFields[idx]" class="error">Your bid must be higher than existing bids!</p>
+    <div class="current_status">
+      <h3>Current Bids:</h3>
+      <ul class="bids outline">
+        <ng-container *ngIf="product.bids[0]">
+          <li *ngFor="let bid of product.bids">
+            {{bid.name}}: £{{bid.ammount}}
+          </li>
+        </ng-container>
+        <ng-container *ngIf="!product.bids[0]">
+          <li>No Bids Yet</li>
+        </ng-container>
+      </ul>
+      <form>
+        <input class="outline search" type="text" name="search" placeholder="search" [(ngModel)]="searchFields[idx]">
+      </form>
+    </div>
+  </div>
+</section>
+
+<button class="end_bidding outline" (click)="processEnd()">End Bidding</button>
